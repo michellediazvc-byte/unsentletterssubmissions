@@ -4,327 +4,146 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>unsent letters — send yours</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --plum: #3D2855;
-      --plum-deep: #2a1a40;
-      --plum-light: #5a3f7a;
       --orange: #E8552A;
-      --orange-light: #f07050;
       --cream: #FAF6F0;
-      --cream-dark: #F2EBE0;
       --white: #FFFFFF;
       --text: #2C1F3D;
       --text-muted: #7a6890;
-      --border: #ddd6ea;
-      --lavender: #eee7f8;
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Lora', Georgia, serif;
       background: var(--cream);
       color: var(--text);
       line-height: 1.7;
-      overflow-x: hidden;
     }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 1000;
-      opacity: 0.35;
-    }
-
+    /* Hero Section */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 4.5rem 2rem 3.5rem;
-      background: var(--plum);
-      position: relative;
-      overflow: hidden;
-      isolation: isolate;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 28%, rgba(116, 82, 154, 0.55) 0%, rgba(90, 63, 122, 0.2) 40%, rgba(42, 26, 64, 0.2) 100%),
-        linear-gradient(180deg, #5b3e7e 0%, #43295f 42%, #2d1d47 100%);
-      z-index: -2;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: repeating-linear-gradient(
-        to bottom,
-        transparent 0,
-        transparent 33px,
-        rgba(255,255,255,0.055) 33px,
-        rgba(255,255,255,0.055) 34px
-      );
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .hero-inner {
-      position: relative;
+      padding: 4rem 2rem;
+      background: linear-gradient(180deg, #5b3e7e 0%, #2d1d47 100%);
       text-align: center;
-      width: 100%;
-      max-width: 1100px;
+      position: relative;
     }
 
+    /* The "Perfect" Icon Wrapper */
     .hero-logo-wrap {
-      width: 152px;
-      height: 152px;
+      width: 140px;
+      height: 140px;
       margin: 0 auto 2.5rem;
-      display: grid;
-      place-items: center;
-      border-radius: 28px;
-      background: rgba(255,255,255,0.065);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 14px 44px rgba(0,0,0,0.22);
-      backdrop-filter: blur(3px);
+      background: rgba(255,255,255,0.08); /* Subtle glass effect */
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     }
 
     .hero-logo {
-      width: 92px;
-      height: 92px;
-      display: block;
+      width: 88px;
+      height: 88px;
+      object-fit: cover;
+      border-radius: 18px; /* Matches the rounded corners of your design */
     }
 
     .hero-label {
       display: block;
-      margin-bottom: 1.2rem;
-      font-size: 0.92rem;
-      letter-spacing: 0.26em;
+      color: white;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.25em;
+      font-size: 0.85rem;
+      margin-bottom: 1.2rem;
+      opacity: 0.9;
     }
 
     .hero-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(2.2rem, 6vw, 3.4rem);
-      line-height: 1.1;
-      font-style: italic;
-      font-weight: 500;
-      letter-spacing: -0.01em;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 8vw, 3.8rem);
       color: white;
-      max-width: 25ch;
-      margin: 0 auto 2.6rem;
-      text-wrap: balance;
+      font-style: italic;
+      font-weight: 400;
+      max-width: 20ch;
+      margin: 0 auto 3.5rem;
+      line-height: 1.1;
     }
 
-    .hero-title .orange {
-      color: var(--orange);
-    }
+    .hero-title span { color: var(--orange); }
 
     .hero-cta {
       display: inline-block;
-      background: linear-gradient(180deg, #ff6a32 0%, var(--orange) 100%);
+      background: var(--orange);
       color: white;
       text-decoration: none;
-      font-size: 1rem;
-      padding: 1.15rem 3.6rem;
-      min-width: 365px;
+      padding: 1.2rem 3.5rem;
       border-radius: 4px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-      box-shadow: 0 12px 26px rgba(232, 85, 42, 0.2);
-    }
-
-    .hero-cta:hover {
-      transform: translateY(-2px);
-      background: linear-gradient(180deg, #ff7643 0%, var(--orange-light) 100%);
-    }
-
-    .wave-divider {
-      display: block;
-      width: 100%;
-      overflow: hidden;
-      line-height: 0;
-      background: var(--plum);
-    }
-
-    .wave-divider svg {
-      display: block;
-      width: 100%;
-      height: 96px;
-    }
-
-    .container {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .about-section {
-      padding: 6rem 0 4.2rem;
-    }
-
-    .section-label {
-      display: block;
-      font-size: 0.86rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 1.3rem;
-    }
-
-    .about-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(3.5rem, 7vw, 5.3rem);
-      line-height: 0.95;
-      color: var(--plum);
-      font-weight: 500;
-      margin-bottom: 1.6rem;
-    }
-
-    .about-title .orange {
-      color: var(--orange);
-    }
-
-    .about-copy {
-      font-size: clamp(1.15rem, 2.2vw, 1.5rem);
-      line-height: 1.75;
-      max-width: 980px;
-      color: var(--text);
-    }
-
-    .about-signoff {
-      margin-top: 2rem;
       font-size: 1.1rem;
-      font-style: italic;
-      color: var(--text-muted);
+      transition: all 0.2s ease;
+      box-shadow: 0 10px 20px rgba(232, 85, 42, 0.2);
     }
 
-    .form-section {
-      padding: 2rem 0 5.2rem;
+    .hero-cta:hover { 
+      transform: translateY(-3px);
+      background: #f06a42;
+      box-shadow: 0 15px 30px rgba(232, 85, 42, 0.3);
     }
 
-    .form-shell {
-      background: var(--white);
-      border-top: 5px solid var(--orange);
+    /* Content Styling */
+    .container { max-width: 850px; margin: 0 auto; padding: 5rem 2rem; }
+    
+    .about-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      color: var(--plum);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-card {
+      background: white;
+      padding: 4rem 2.5rem;
       border-radius: 4px;
-      box-shadow: 0 8px 40px rgba(61, 40, 85, 0.08);
-      padding: 4rem 2rem 3rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+      border-top: 5px solid var(--orange);
     }
 
     .note-box {
-      background: linear-gradient(180deg, #f1ebfb 0%, #ece5f7 100%);
+      background: #f1ebfb;
+      padding: 2rem;
       border-radius: 4px;
-      padding: 1.9rem 2rem;
-      max-width: 840px;
-      margin: 0 auto 2.8rem;
-    }
-
-    .note-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--plum);
-      margin-bottom: 0.7rem;
-    }
-
-    .note-box p {
-      font-size: 0.98rem;
-      line-height: 1.8;
-      color: var(--plum);
-      margin-bottom: 0.7rem;
-    }
-
-    .note-box ul {
-      padding-left: 1.2rem;
-      list-style: disc;
-    }
-
-    .note-box li {
-      font-size: 0.98rem;
-      line-height: 1.7;
-      color: var(--plum);
-      font-style: italic;
-    }
-
-    form {
-      max-width: 840px;
-      margin: 0 auto;
-    }
-
-    .form-group {
-      margin-bottom: 2rem;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.7rem;
-      font-size: 0.88rem;
-      color: var(--plum);
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-    }
-
-    label .optional {
-      text-transform: none;
-      letter-spacing: 0;
-      font-style: italic;
-      color: var(--text-muted);
-      margin-left: 0.45rem;
-      font-size: 0.82rem;
-    }
-
-    textarea,
-    select {
-      width: 100%;
-      background: #fffdf9;
-      border: 1.5px solid var(--border);
-      border-radius: 4px;
-      font-family: 'Lora', Georgia, serif;
-      color: var(--text);
-      font-size: 1rem;
-      padding: 1.15rem 1.2rem;
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      margin-bottom: 2.5rem;
     }
 
     textarea {
-      min-height: 320px;
-      resize: vertical;
+      width: 100%;
+      min-height: 300px;
+      padding: 1.5rem;
+      border: 1.5px solid #eee;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      background: #fdfdfd;
     }
 
-    textarea:focus,
-    select:focus {
+    textarea:focus {
+      outline: none;
       border-color: var(--plum);
-      box-shadow: 0 0 0 3px rgba(61, 40, 85, 0.08);
-    }
-
-    select {
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1.5l6 6 6-6' stroke='%233D2855' stroke-width='1.7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1.2rem center;
-      padding-right: 3rem;
-      cursor: pointer;
     }
 
     .submit-btn {
@@ -332,374 +151,65 @@
       background: var(--plum);
       color: white;
       border: none;
-      border-radius: 4px;
-      padding: 1.25rem 2rem;
-      font-size: 1rem;
+      padding: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
-      transition: transform 0.18s ease, background 0.18s ease;
-      margin-top: 0.3rem;
+      margin-top: 2rem;
+      border-radius: 4px;
+      transition: background 0.2s;
     }
 
-    .submit-btn:hover {
-      background: var(--plum-light);
-      transform: translateY(-1px);
-    }
-
-    .form-note {
-      text-align: center;
-      margin-top: 1.45rem;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      font-style: italic;
-    }
-
-    .how-section {
-      padding: 5.5rem 0 0;
-    }
-
-    .how-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(3rem, 6vw, 4.7rem);
-      line-height: 1;
-      font-weight: 500;
-      color: var(--plum);
-      margin-bottom: 2.4rem;
-    }
-
-    .how-title .orange {
-      color: var(--orange);
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 3rem;
-    }
-
-    .step-num {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 4.2rem;
-      color: var(--cream-dark);
-      line-height: 1;
-      font-weight: 600;
-      margin-bottom: 0.9rem;
-    }
-
-    .step h3 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.15rem;
-      font-weight: 500;
-      color: var(--plum);
-      margin-bottom: 0.65rem;
-    }
-
-    .step p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    .quote-section {
-      margin-top: 5rem;
-      background: linear-gradient(180deg, #ff6c34 0%, var(--orange) 100%);
-      text-align: center;
-      padding: 5rem 2rem;
-    }
-
-    .quote-section blockquote {
-      max-width: 860px;
-      margin: 0 auto;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-style: italic;
-      font-size: clamp(2rem, 4vw, 3.1rem);
-      line-height: 1.45;
-      color: white;
-      font-weight: 500;
-    }
-
-    .quote-section cite {
-      display: block;
-      margin-top: 1.2rem;
-      color: rgba(255,255,255,0.75);
-      font-size: 0.9rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-style: normal;
-    }
-
-    .divider-line {
-      border: none;
-      border-top: 1px solid var(--border);
-    }
+    .submit-btn:hover { background: #4e366b; }
 
     footer {
-      background: var(--cream);
-      padding: 2.8rem 2rem 3.5rem;
+      padding: 5rem 2rem;
       text-align: center;
+      background: var(--cream);
+      border-top: 1px solid #ede7f5;
     }
 
-    .footer-logo {
-      width: 56px;
-      height: 56px;
-      display: block;
-      margin: 0 auto 1rem;
-    }
-
-    .footer-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 2rem;
-      color: var(--plum);
-      margin-bottom: 0.4rem;
-    }
-
-    .footer-copy {
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      font-style: italic;
-      margin-bottom: 0.8rem;
-    }
-
-    footer a {
-      color: var(--plum);
-      text-decoration: none;
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    footer a:hover {
-      color: var(--orange);
-    }
-
-    @media (max-width: 900px) {
-      .steps {
-        grid-template-columns: 1fr;
-        gap: 2.2rem;
-      }
-
-      .hero-logo-wrap {
-        width: 126px;
-        height: 126px;
-      }
-
-      .hero-logo {
-        width: 76px;
-        height: 76px;
-      }
-
-      .hero-cta {
-        min-width: unset;
-        width: 100%;
-        max-width: 360px;
-      }
-
-      .form-shell {
-        padding: 2.4rem 1.2rem 2.2rem;
-      }
-
-      .note-box {
-        padding: 1.4rem 1.2rem;
-      }
-
-      textarea {
-        min-height: 240px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        padding: 3.5rem 1.25rem 2.5rem;
-      }
-
-      .container {
-        padding: 0 1.25rem;
-      }
-
-      .hero-title {
-        font-size: clamp(1.8rem, 10vw, 2.5rem);
-        max-width: 20ch;
-      }
-
-      .about-section {
-        padding-top: 4.3rem;
-      }
-
-      .about-copy {
-        font-size: 1.05rem;
-      }
-
-      .quote-section {
-        padding: 4rem 1.25rem;
-      }
-    }
+    .footer-logo { width: 55px; height: 55px; border-radius: 12px; margin-bottom: 1.5rem; }
   </style>
 </head>
 <body>
 
   <header class="hero">
-    <div class="hero-inner">
-      <div class="hero-logo-wrap" aria-hidden="true">
-        <svg class="hero-logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="0" y="0" width="120" height="120" rx="20" fill="#FF5A1F"/>
-          <g fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M28 72 L44 32 L88 72 L72 88 Z"/>
-            <path d="M44 32 C56 42, 70 42, 88 32"/>
-            <path d="M57 60 L66 52 L62 64 L72 56 L67 70 L79 60"/>
-          </g>
-        </svg>
+    <div>
+      <div class="hero-logo-wrap">
+        <img src="X_unsentletters_icon_orange.jpg" alt="Unsent Letters" class="hero-logo">
       </div>
-
-      <span class="hero-label">SUBMIT YOUR LETTER</span>
-
-      <h1 class="hero-title">
-        what would you say, if you could say anything<span class="orange">?</span>
-      </h1>
-
-      <a class="hero-cta" href="#submit">send the letter →</a>
+      <span class="hero-label">Submit Your Letter</span>
+      <h1 class="hero-title">what would you say, if you could say anything<span>?</span></h1>
+      <a href="#submit" class="hero-cta">send the letter →</a>
     </div>
   </header>
 
-  <div class="wave-divider" aria-hidden="true">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-      <path fill="#FAF6F0" d="M0,64L60,58.7C120,53,240,43,360,42.7C480,43,600,53,720,58.7C840,64,960,64,1080,58.7C1200,53,1320,43,1380,37.3L1440,32L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z"></path>
-    </svg>
-  </div>
-
-  <section class="about-section">
-    <div class="container">
-      <span class="section-label">ABOUT THE NEWSLETTER</span>
-      <h2 class="about-title">unsent letters<span class="orange">.</span></h2>
-      <p class="about-copy">
-        Send me a quiet confession. Dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (&amp; me) — it's not just you. It's us.
-      </p>
-      <p class="about-signoff">— it’s michelle d.</p>
-    </div>
+  <section class="container">
+    <h2 class="about-title">unsent letters.</h2>
+    <p style="font-size: 1.3rem;">Send me a quiet confession. Dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you — it's not just you. It's us.</p>
   </section>
 
-  <section id="submit" class="form-section">
-    <div class="container">
-      <div class="form-shell">
-        <div class="note-box">
-          <div class="note-title">a note on the letters ♡</div>
-          <p>
-            The nature of the letters/questions ideally centre around personal dilemmas you're keen to have answered/thought through by me &amp; the community. The idea being that through writing and the community, we can all lift each other up, even just a tiny bit. ♡ —
-          </p>
-          <ul>
-            <li>1–2 paragraphs, of roughly 4–6 sentences</li>
-            <li>Try to end with a question where possible</li>
-          </ul>
-        </div>
-
-        <form id="letterForm" action="https://formspree.io/f/xpwrrqep" method="POST">
-          <div class="form-group">
-            <label for="letter">YOUR LETTER <span class="optional">(required)</span></label>
-            <textarea id="letter" name="letter" required placeholder=""></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="theme">THEME <span class="optional">(optional — helps me find your letter)</span></label>
-            <select id="theme" name="theme">
-              <option value="">Select a theme</option>
-              <option value="friendship">friendship</option>
-              <option value="love">love</option>
-              <option value="family">family</option>
-              <option value="grief">grief</option>
-              <option value="work">work</option>
-              <option value="identity">identity</option>
-              <option value="other">other</option>
-            </select>
-          </div>
-
-          <button class="submit-btn" type="submit">send the letter →</button>
-          <p class="form-note">100% anonymous. I read everything. No name, no email required.</p>
-        </form>
+  <section id="submit" class="container">
+    <div class="form-card">
+      <div class="note-box">
+        <h4 style="font-family: 'Cormorant Garamond'; margin-bottom: 0.5rem; font-size: 1.2rem;">a note on the letters ♡</h4>
+        <p style="font-size: 1rem; color: var(--plum);">Confessions ideally center around personal dilemmas. 1-2 paragraphs is perfect. Try to end with a question.</p>
       </div>
+
+      <form action="https://formspree.io/f/xpwrrqep" method="POST">
+        <label style="font-weight: bold; letter-spacing: 0.1em; font-size: 0.8rem;">YOUR LETTER</label>
+        <textarea name="message" required placeholder="Write it all down..."></textarea>
+        <button type="submit" class="submit-btn">send the letter →</button>
+      </form>
+      <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-style: italic;">100% anonymous. I read everything.</p>
     </div>
   </section>
-
-  <section class="how-section">
-    <div class="container">
-      <span class="section-label">HOW IT WORKS</span>
-      <h2 class="how-title">three steps. one letter<span class="orange">.</span></h2>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <h3>write it down</h3>
-          <p>Whatever it is. The thing you've been circling. The question you're scared to ask out loud. Write it here — no name, no context needed.</p>
-        </div>
-
-        <div class="step">
-          <div class="step-num">02</div>
-          <h3>send it anonymously</h3>
-          <p>All submissions are completely anonymous. I read every single one. Nothing is dismissed, nothing is judged. Very brave of you, genuinely.</p>
-        </div>
-
-        <div class="step">
-          <div class="step-num">03</div>
-          <h3>keep an eye out</h3>
-          <p>I publish one or two letters a week on the newsletter. Yours might be next. Subscribe so you don't miss it when it lands.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="quote-section">
-      <blockquote>
-        “send me a quiet confession. dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (&amp; me) — it's not just you. It's us.”
-      </blockquote>
-      <cite>— IT'S MICHELLE D.</cite>
-    </div>
-  </section>
-
-  <hr class="divider-line" />
 
   <footer>
-    <svg class="footer-logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect x="0" y="0" width="120" height="120" rx="20" fill="#FF5A1F"/>
-      <g fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M28 72 L44 32 L88 72 L72 88 Z"/>
-        <path d="M44 32 C56 42, 70 42, 88 32"/>
-        <path d="M57 60 L66 52 L62 64 L72 56 L67 70 L79 60"/>
-      </g>
-    </svg>
-    <div class="footer-title">unsent letters</div>
-    <p class="footer-copy">All submissions are 100% anonymous.</p>
-    <a href="https://michellediazvc.substack.com/" target="_blank" rel="noopener noreferrer">Visit the newsletter</a>
+    <img src="X_unsentletters_icon_orange.jpg" alt="Unsent Letters" class="footer-logo">
+    <h3 style="font-family: 'Cormorant Garamond'; font-size: 2rem; color: var(--plum); margin-bottom: 0.5rem;">unsent letters</h3>
+    <a href="https://michellediazvc.substack.com/" style="color: var(--orange); text-decoration: none; font-weight: bold; letter-spacing: 0.1em; font-size: 0.9rem;">VISIT THE NEWSLETTER</a>
   </footer>
 
-  <script>
-    const form = document.getElementById('letterForm');
-
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-
-      const submitBtn = form.querySelector('.submit-btn');
-      const originalText = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'sending...';
-
-      try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-
-        if (response.ok) {
-          form.reset();
-          alert('Letter sent!');
-        } else {
-          alert('Something went wrong. Please try again.');
-        }
-      } catch (error) {
-        alert('Something went wrong. Please try again.');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-      }
-    });
-  </script>
 </body>
 </html>
