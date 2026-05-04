@@ -87,7 +87,7 @@
       font-size: 1.1rem;
     }
 
-    /* --- ABOUT SECTION --- */
+    /* --- ABOUT & SECTION LABELS --- */
     .section-label {
       text-transform: uppercase;
       letter-spacing: 0.2em;
@@ -126,26 +126,41 @@
       font-style: italic;
     }
 
-    /* --- FORM CARD --- */
+    /* --- SUBMISSION SECTION (FIXED SPACING & ALIGNMENT) --- */
+    .submit-section {
+      text-align: center;
+      padding-bottom: 8rem;
+    }
+
+    .submit-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 2.8rem); /* Refined size */
+      color: var(--plum);
+      margin-bottom: 4rem; /* Generous gap before the box */
+      max-width: 25ch;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.2;
+    }
+
     .form-card {
       background: white;
       padding: 4rem 2.5rem;
       border-radius: 4px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-      margin-top: -2rem;
-      text-align: center; /* Centers label and nested elements */
+      text-align: center;
     }
 
     .note-box {
       background: #f1ebfb;
       padding: 2.5rem;
       border-radius: 4px;
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
       font-size: 0.95rem;
-      text-align: left; /* Keep list/text readable inside the box */
+      text-align: left;
     }
 
-    label { font-weight: bold; letter-spacing: 0.1em; font-size: 0.8rem; display: block; margin-bottom: 0.5rem; text-align: center; }
+    label { font-weight: bold; letter-spacing: 0.1em; font-size: 0.8rem; display: block; margin-bottom: 1rem; color: var(--plum); }
     
     textarea, select {
       width: 100%;
@@ -153,19 +168,14 @@
       border: 1.5px solid #eee;
       border-radius: 4px;
       font-family: inherit;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       background: #fdfdfd;
       font-size: 1rem;
       text-align: left;
     }
 
-    textarea { min-height: 250px; }
-
-    textarea::placeholder {
-      white-space: pre-wrap;
-      color: #aaa;
-      opacity: 1;
-    }
+    textarea { min-height: 280px; }
+    textarea::placeholder { white-space: pre-wrap; color: #aaa; opacity: 1; font-size: 0.95rem; }
 
     .submit-btn {
       width: 100%;
@@ -176,9 +186,12 @@
       font-size: 1.1rem;
       cursor: pointer;
       border-radius: 4px;
+      transition: background 0.2s;
     }
+    .submit-btn:hover { background: #2d1d47; }
 
-    footer { padding: 5rem 2rem; text-align: center; }
+    /* --- FOOTER --- */
+    footer { padding: 5rem 2rem; text-align: center; background: var(--cream); border-top: 1px solid #eee; }
     .footer-logo { width: 55px; height: 55px; border-radius: 12px; margin-bottom: 1.5rem; }
   </style>
 </head>
@@ -203,7 +216,7 @@
   </section>
 
   <section class="container" style="background: #fff; max-width: 100%;">
-    <div style="max-width: 850px; margin: 0 auto;">
+    <div style="max-width: 850px; margin: 0 auto; padding: 6rem 2rem;">
       <span class="section-label">HOW IT WORKS</span>
       <h2 class="about-title" style="font-size: 3rem;">three steps. one letter.</h2>
       <div class="steps">
@@ -231,9 +244,9 @@
     <p style="font-size: 0.8rem; margin-top: 2rem; letter-spacing: 0.2em;">— UNSENT LETTERS</p>
   </div>
 
-  <section id="submit" class="container">
-    <span class="section-label" style="text-align: center;">SUBMIT YOUR LETTER</span>
-    <h2 class="about-title" style="text-align: center; font-size: 2rem;">what would you say, if you could say anything<span>?</span></h2>
+  <section id="submit" class="container submit-section">
+    <span class="section-label">SUBMIT YOUR LETTER</span>
+    <h2 class="submit-title">what would you say, if you could say anything<span>?</span></h2>
     
     <div class="form-card">
       <div class="note-box">
@@ -249,14 +262,7 @@
         <label>YOUR LETTER (required)</label>
         <textarea name="message" required placeholder="Samples of Qs:
 -
-From the outside, my career looks impressive: promotions, LinkedIn 
-announcements, people asking me for advice. Inside, I feel like I’ve 
-been faking for so long that I’ve started to forget what I’m actually 
-good at. Every compliment feels like a near-miss, like they’re praising a
-person I’ve been performing, and I’m constantly waiting for someone to 
-notice. Is there something wrong with me? I know if other people were 
-blessed to be in my position, they’d be happy.
-          
+From the outside, my career looks impressive: promotions, LinkedIn announcements, people asking me for advice. Inside, I feel like I’ve been faking for so long that I’ve started to forget what I’m actually good at. Every compliment feels like a near-miss, like they’re praising a person I’ve been performing, and I’m constantly waiting for someone to notice. Is there something wrong with me? I know if other people were blessed to be in my position, they’d be happy.
 Yours, Faking Happiness"></textarea>
         
         <label>THEME (optional — helps me find your letter)</label>
@@ -269,7 +275,7 @@ Yours, Faking Happiness"></textarea>
 
         <button type="submit" class="submit-btn">send the letter →</button>
       </form>
-      <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">100% anonymous. I read everything. No name, no email required.</p>
+      <p style="text-align: center; margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem;">100% anonymous. I read everything. No name, no email required.</p>
     </div>
   </section>
 
