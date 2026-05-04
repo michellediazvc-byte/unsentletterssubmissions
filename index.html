@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>unsent letters — send yours</title>
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
@@ -12,15 +12,25 @@
   <style>
     :root {
       --plum: #3D2855;
+      --plum-dark: #2d1d47;
       --orange: #E8552A;
       --cream: #FAF6F0;
       --white: #FFFFFF;
       --text: #2C1F3D;
       --text-muted: #7a6890;
+      --soft-lilac: #f1ebfb;
+      --border: #ece4f5;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Lora', Georgia, serif;
@@ -29,15 +39,39 @@
       line-height: 1.7;
     }
 
-    /* --- HERO --- */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 4rem 2rem;
-      background: linear-gradient(180deg, #5b3e7e 0%, #2d1d47 100%);
+      background:
+        radial-gradient(circle at top, rgba(115, 80, 155, 0.5), transparent 45%),
+        linear-gradient(180deg, #5b3e7e 0%, #2d1d47 100%);
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.06) 0,
+        rgba(255,255,255,0.06) 1px,
+        transparent 1px,
+        transparent 68px
+      );
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      width: 100%;
     }
 
     .hero-logo-wrap {
@@ -54,7 +88,12 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     }
 
-    .hero-logo { width: 88px; height: 88px; object-fit: cover; border-radius: 18px; }
+    .hero-logo {
+      width: 88px;
+      height: 88px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
 
     .hero-label {
       display: block;
@@ -67,27 +106,41 @@
 
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 8vw, 3.8rem);
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
       color: white;
       font-style: italic;
       font-weight: 400;
-      max-width: 20ch;
-      margin: 0 auto 3.5rem;
-      line-height: 1.1;
+      max-width: 11ch;
+      margin: 0 auto 3rem;
+      line-height: 0.94;
     }
-    .hero-title span { color: var(--orange); }
+
+    .hero-title span {
+      color: var(--orange);
+    }
 
     .hero-cta {
       display: inline-block;
       background: var(--orange);
       color: white;
       text-decoration: none;
-      padding: 1.2rem 3.5rem;
+      padding: 1.15rem 3.5rem;
       border-radius: 4px;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
 
-    /* --- LAYOUT ELEMENTS --- */
+    .hero-cta:hover {
+      background: #f0643d;
+      transform: translateY(-1px);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
     .section-label {
       text-transform: uppercase;
       letter-spacing: 0.2em;
@@ -97,45 +150,103 @@
       margin-bottom: 1rem;
     }
 
-    .container { max-width: 850px; margin: 0 auto; padding: 6rem 2rem; }
-    
-    .about-title {
+    .about-title,
+    .submit-title,
+    .steps-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 6vw, 4.5rem);
       color: var(--plum);
-      margin-bottom: 1.5rem;
+      line-height: 1.05;
+    }
+
+    .about-title {
+      font-size: clamp(3rem, 6vw, 4.8rem);
+      margin-bottom: 1.3rem;
+    }
+
+    .about-copy {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-signoff {
+      font-style: italic;
+    }
+
+    .steps-wrap {
+      background: var(--white);
+      max-width: 100%;
+    }
+
+    .steps-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    .steps-title {
+      font-size: clamp(2.5rem, 5vw, 3.6rem);
+      margin-bottom: 2.2rem;
     }
 
     .steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 3rem;
-      margin-top: 3rem;
+      margin-top: 2rem;
     }
-    .step-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: #e0d9e8; line-height: 1; }
-    .step h3 { font-family: 'Cormorant Garamond', serif; color: var(--plum); font-size: 1.4rem; margin-bottom: 0.5rem; }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.7rem;
+      color: #ddd3e8;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .step h3 {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--plum);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
 
     .quote-banner {
       background: var(--orange);
       color: white;
       padding: 5rem 2rem;
       text-align: center;
-      font-size: 1.5rem;
-      font-style: italic;
     }
 
-    /* --- SUBMISSION BOX (FIXED) --- */
-    .submit-section { text-align: center; padding-bottom: 8rem; }
+    .quote-banner p:first-child {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+      font-style: italic;
+      line-height: 1.55;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .quote-banner p:last-child {
+      font-size: 0.8rem;
+      margin-top: 2rem;
+      letter-spacing: 0.2em;
+    }
+
+    .submit-section {
+      text-align: center;
+      padding-bottom: 8rem;
+    }
 
     .submit-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 5vw, 2.8rem);
-      color: var(--plum);
-      margin-bottom: 4rem; 
-      max-width: 25ch;
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      margin-bottom: 3rem;
+      max-width: 20ch;
       margin-left: auto;
       margin-right: auto;
-      line-height: 1.2;
+    }
+
+    .submit-title span {
+      color: var(--orange);
     }
 
     .form-card {
@@ -143,32 +254,73 @@
       padding: 4rem 2.5rem;
       border-radius: 4px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-    }
-
-    .note-box {
-      background: #f1ebfb;
-      padding: 2.5rem;
-      border-radius: 4px;
-      margin-bottom: 3.5rem;
-      font-size: 0.95rem;
       text-align: left;
     }
 
-    label { font-weight: bold; letter-spacing: 0.1em; font-size: 0.8rem; display: block; margin-bottom: 1rem; color: var(--plum); text-align: center; }
-    
-    textarea, select {
-      width: 100%;
-      padding: 1.2rem;
-      border: 1.5px solid #eee;
+    .note-box {
+      background: var(--soft-lilac);
+      padding: 2rem;
       border-radius: 4px;
-      font-family: inherit;
-      margin-bottom: 2.5rem;
-      background: #fdfdfd;
-      font-size: 1rem;
+      margin-bottom: 3rem;
+      font-size: 0.95rem;
     }
 
-    textarea { min-height: 280px; }
-    textarea::placeholder { white-space: pre-wrap; color: #aaa; opacity: 1; font-size: 0.95rem; }
+    .note-box h4 {
+      font-family: 'Cormorant Garamond', serif;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: var(--plum);
+    }
+
+    .note-box ul {
+      margin-top: 1rem;
+      margin-left: 1.5rem;
+    }
+
+    .field {
+      margin-bottom: 2rem;
+    }
+
+    label {
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      font-size: 0.8rem;
+      display: block;
+      margin-bottom: 0.9rem;
+      color: var(--plum);
+      text-align: center;
+    }
+
+    textarea,
+    select {
+      width: 100%;
+      padding: 1.2rem;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      font-family: inherit;
+      background: #fffdfd;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 280px;
+      resize: vertical;
+    }
+
+    textarea::placeholder {
+      white-space: pre-wrap;
+      color: #aaa;
+      opacity: 1;
+      font-size: 0.95rem;
+    }
+
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: #b8a5cf;
+      box-shadow: 0 0 0 3px rgba(61, 40, 85, 0.08);
+    }
 
     .submit-btn {
       width: 100%;
@@ -176,23 +328,89 @@
       color: white;
       border: none;
       padding: 1.2rem;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       cursor: pointer;
       border-radius: 4px;
-      transition: background 0.2s;
+      transition: background 0.2s ease, opacity 0.2s ease;
     }
-    .submit-btn:hover { background: #2d1d47; }
 
-    footer { padding: 5rem 2rem; text-align: center; background: var(--cream); border-top: 1px solid #eee; }
-    .footer-logo { width: 55px; height: 55px; border-radius: 12px; margin-bottom: 1.5rem; }
+    .submit-btn:hover {
+      background: var(--plum-dark);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: wait;
+    }
+
+    .form-status {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    footer {
+      padding: 5rem 2rem;
+      text-align: center;
+      background: var(--cream);
+      border-top: 1px solid #eee;
+    }
+
+    .footer-logo {
+      width: 55px;
+      height: 55px;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      object-fit: cover;
+    }
+
+    .footer-link {
+      color: var(--plum);
+      font-weight: bold;
+      text-decoration: none;
+      display: block;
+      margin-top: 1rem;
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding: 3rem 1.25rem;
+      }
+
+      .container,
+      .steps-inner {
+        padding: 4rem 1.25rem;
+      }
+
+      .form-card {
+        padding: 2rem 1.25rem;
+      }
+
+      .hero-logo-wrap {
+        width: 118px;
+        height: 118px;
+      }
+
+      .hero-logo {
+        width: 76px;
+        height: 76px;
+      }
+
+      .hero-cta {
+        width: 100%;
+        max-width: 340px;
+      }
+    }
   </style>
 </head>
 <body>
 
   <header class="hero">
-    <div>
+    <div class="hero-inner">
       <div class="hero-logo-wrap">
-        <img src="X_unsentletters_icon_orange.jpg" alt="Icon" class="hero-logo">
+        <img src="X_unsentletters_icon_orange.jpg" alt="Unsent Letters icon" class="hero-logo">
       </div>
       <span class="hero-label">Submit Your Letter</span>
       <h1 class="hero-title">what would you say, if you could say anything<span>?</span></h1>
@@ -203,14 +421,17 @@
   <section class="container">
     <span class="section-label">ABOUT THE NEWSLETTER</span>
     <h2 class="about-title">unsent letters.</h2>
-    <p style="font-size: 1.2rem; margin-bottom: 1rem;">Send me a quiet confession. Dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (& me) — it's not just you. It's us.</p>
-    <p style="font-style: italic;">— it’s michelle d.</p>
+    <p class="about-copy">
+      Send me a quiet confession. Dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (&amp; me) — it's not just you. It's us.
+    </p>
+    <p class="about-signoff">— it’s michelle d.</p>
   </section>
 
-  <section class="container" style="background: #fff; max-width: 100%;">
-    <div style="max-width: 850px; margin: 0 auto; padding: 6rem 2rem;">
+  <section class="steps-wrap">
+    <div class="steps-inner">
       <span class="section-label">HOW IT WORKS</span>
-      <h2 class="about-title" style="font-size: 3rem;">three steps. one letter.</h2>
+      <h2 class="steps-title">three steps. one letter.</h2>
+
       <div class="steps">
         <div class="step">
           <div class="step-num">01</div>
@@ -232,51 +453,123 @@
   </section>
 
   <div class="quote-banner">
-    <p>“send me a quiet confession. dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (& me) — it's not just you. It's us.”</p>
-    <p style="font-size: 0.8rem; margin-top: 2rem; letter-spacing: 0.2em;">— UNSENT LETTERS</p>
+    <p>“send me a quiet confession. dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (&amp; me) — it's not just you. It's us.”</p>
+    <p>— UNSENT LETTERS</p>
   </div>
 
   <section id="submit" class="container submit-section">
     <span class="section-label">SUBMIT YOUR LETTER</span>
     <h2 class="submit-title">what would you say, if you could say anything<span>?</span></h2>
-    
+
     <div class="form-card">
       <div class="note-box">
-        <h4 style="font-family: 'Cormorant Garamond'; margin-bottom: 1rem; font-size: 1.3rem;">a note on the letters ♡</h4>
-        <p>The nature of the letters/questions ideally centre around personal dilemmas you're keen to have answered/thought through by me & the community. The idea being that through writing and the community, we can all lift each other up, even just a tiny bit. ♡ —</p>
-        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+        <h4>a note on the letters ♡</h4>
+        <p>
+          The nature of the letters/questions ideally centre around personal dilemmas you're keen to have answered/thought through by me &amp; the community. The idea being that through writing and the community, we can all lift each other up, even just a tiny bit. ♡ —
+        </p>
+        <ul>
           <li>1-2 paragraphs, of roughly 4-6 sentences</li>
           <li>Try to end with a question where possible</li>
         </ul>
       </div>
 
-      <form action="https://formspree.io/f/xpwrrqep" method="POST">
-        <label>YOUR LETTER (required)</label>
-        <textarea name="message" required placeholder="Samples of Qs:
+      <form id="letterForm" novalidate>
+        <div class="field">
+          <label for="message">YOUR LETTER (required)</label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            placeholder="Samples of Qs:
 -
 From the outside, my career looks impressive: promotions, LinkedIn announcements, people asking me for advice. Inside, I feel like I’ve been faking for so long that I’ve started to forget what I’m actually good at. Every compliment feels like a near-miss, like they’re praising a person I’ve been performing, and I’m constantly waiting for someone to notice. Is there something wrong with me? I know if other people were blessed to be in my position, they’d be happy.
 Yours, Faking Happiness"></textarea>
-        
-        <label>THEME (optional — helps me find your letter)</label>
-        <select name="theme">
-          <option value="Love">Love</option>
-          <option value="Friendship">Friendship</option>
-          <option value="Career">Career</option>
-          <option value="Family">Family</option>
-          <option value="other">other</option>
-        </select>
+        </div>
+
+        <div class="field">
+          <label for="theme">THEME (optional — helps me find your letter)</label>
+          <select id="theme" name="theme">
+            <option value="">Select a theme</option>
+            <option value="Love">Love</option>
+            <option value="Friendship">Friendship</option>
+            <option value="Career">Career</option>
+            <option value="Family">Family</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
 
         <button type="submit" class="submit-btn">send the letter →</button>
       </form>
-      <p style="text-align: center; margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem;">100% anonymous. I read everything. No name, no email required.</p>
+
+      <p id="formStatus" class="form-status">100% anonymous. I read everything. No name, no email required.</p>
     </div>
   </section>
 
   <footer>
-    <img src="X_unsentletters_icon_orange.jpg" alt="Logo" class="footer-logo">
+    <img src="X_unsentletters_icon_orange.jpg" alt="Unsent Letters logo" class="footer-logo">
     <p style="color: var(--text-muted); font-size: 0.9rem;">a newsletter by michelle d.</p>
-    <a href="https://michellediazvc.substack.com/" style="color: var(--plum); font-weight: bold; text-decoration: none; display: block; margin-top: 1rem; letter-spacing: 0.1em;">READ THE NEWSLETTER ↗</a>
+    <a href="https://michellediazvc.substack.com/" class="footer-link" target="_blank" rel="noopener noreferrer">READ THE NEWSLETTER ↗</a>
   </footer>
 
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw_pK-7VdT6X5pVqxXbNYN0zwHnh1qZvTN_5dvaIqJ7RMP-9eFRWjFxAfDC4zaCYGwQgg/exec";
+
+    const form = document.getElementById("letterForm");
+    const statusEl = document.getElementById("formStatus");
+    const submitBtn = form.querySelector(".submit-btn");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const letter = form.message.value.trim();
+      const theme = form.theme.value || "unspecified";
+
+      if (!letter) {
+        statusEl.textContent = "Please write your letter first.";
+        return;
+      }
+
+      const payload = {
+        timestamp: new Date().toISOString(),
+        theme: theme,
+        letter: letter
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "sending...";
+      statusEl.textContent = "Sending your letter...";
+
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const responseText = await response.text();
+        let data = null;
+
+        try {
+          data = JSON.parse(responseText);
+        } catch (err) {
+          data = null;
+        }
+
+        if (response.ok && data && data.status === "success") {
+          form.reset();
+          statusEl.textContent = "Letter sent successfully.";
+        } else {
+          statusEl.textContent = "Something went wrong. Please try again.";
+        }
+      } catch (error) {
+        statusEl.textContent = "Something went wrong. Please try again.";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "send the letter →";
+      }
+    });
+  </script>
 </body>
 </html>
