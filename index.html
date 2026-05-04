@@ -29,7 +29,7 @@
       line-height: 1.7;
     }
 
-    /* --- HERO SECTION (MATCHING SCREENSHOT) --- */
+    /* --- 1. HERO SECTION (Exactly like your screenshot) --- */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -38,7 +38,6 @@
       padding: 4rem 2rem;
       background: linear-gradient(180deg, #5b3e7e 0%, #2d1d47 100%);
       text-align: center;
-      position: relative;
     }
 
     .hero-logo-wrap {
@@ -97,12 +96,7 @@
       box-shadow: 0 10px 20px rgba(232, 85, 42, 0.2);
     }
 
-    .hero-cta:hover { 
-      transform: translateY(-3px);
-      background: #f06a42;
-    }
-
-    /* --- CONTENT SECTIONS --- */
+    /* --- 2. ABOUT SECTION --- */
     .container { max-width: 850px; margin: 0 auto; padding: 5rem 2rem; }
     
     .about-title {
@@ -112,12 +106,19 @@
       margin-bottom: 1.5rem;
     }
 
+    .about-text {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
+
+    /* --- 3. SUBMISSION FORM --- */
     .form-card {
       background: white;
       padding: 4rem 2.5rem;
       border-radius: 4px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.06);
       border-top: 5px solid var(--orange);
+      margin-bottom: 4rem;
     }
 
     .note-box {
@@ -150,9 +151,12 @@
       cursor: pointer;
       margin-top: 2rem;
       border-radius: 4px;
+      transition: background 0.3s;
     }
 
-    /* --- STEPS SECTION --- */
+    .submit-btn:hover { background: #4e366b; }
+
+    /* --- 4. HOW IT WORKS --- */
     .steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -163,7 +167,7 @@
     .step-num {
       font-family: 'Cormorant Garamond', serif;
       font-size: 3.5rem;
-      color: #eee;
+      color: #e0d9e8;
       line-height: 1;
       font-weight: 600;
     }
@@ -175,7 +179,7 @@
       margin-bottom: 0.5rem;
     }
 
-    /* --- FOOTER --- */
+    /* --- 5. FOOTER --- */
     footer {
       padding: 5rem 2rem;
       text-align: center;
@@ -183,7 +187,22 @@
       border-top: 1px solid #ede7f5;
     }
 
-    .footer-logo { width: 55px; height: 55px; border-radius: 12px; margin-bottom: 1.5rem; }
+    .footer-logo { 
+      width: 55px; 
+      height: 55px; 
+      border-radius: 12px; 
+      margin-bottom: 1.5rem; 
+      object-fit: cover;
+    }
+
+    .footer-link {
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body>
@@ -191,7 +210,7 @@
   <header class="hero">
     <div>
       <div class="hero-logo-wrap">
-        <img src="X_unsentletters_icon_orange.jpg" alt="Unsent Letters" class="hero-logo">
+        <img src="X_unsentletters_icon_orange.jpg" alt="Unsent Letters Icon" class="hero-logo">
       </div>
       <span class="hero-label">Submit Your Letter</span>
       <h1 class="hero-title">what would you say, if you could say anything<span>?</span></h1>
@@ -201,7 +220,10 @@
 
   <section class="container">
     <h2 class="about-title">unsent letters.</h2>
-    <p style="font-size: 1.3rem;">Send me a quiet confession. Dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you — it's not just you. It's us.</p>
+    <p class="about-text">
+      Send me a quiet confession. Dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. 
+      I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (& me) — it's not just you. It's us.
+    </p>
   </section>
 
   <section id="submit" class="container">
@@ -242,9 +264,10 @@
   </section>
 
   <footer>
-    <img src="X_unsentletters_icon_orange.jpg" alt="Unsent Letters" class="footer-logo">
+    <img src="X_unsentletters_icon_orange.jpg" alt="Unsent Letters Logo" class="footer-logo">
     <h3 style="font-family: 'Cormorant Garamond'; font-size: 2rem; color: var(--plum); margin-bottom: 0.5rem;">unsent letters</h3>
-    <a href="https://michellediazvc.substack.com/" style="color: var(--orange); text-decoration: none; font-weight: bold; letter-spacing: 0.1em; font-size: 0.9rem;">VISIT THE NEWSLETTER</a>
+    <p style="margin-bottom: 1.5rem; color: var(--text-muted);">A home for the things left unsaid.</p>
+    <a href="https://michellediazvc.substack.com/" class="footer-link">VISIT THE NEWSLETTER</a>
   </footer>
 
 </body>
