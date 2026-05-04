@@ -29,7 +29,7 @@
       line-height: 1.7;
     }
 
-    /* --- 1. HERO SECTION (Exactly like your screenshot) --- */
+    /* --- HERO SECTION --- */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -54,12 +54,7 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     }
 
-    .hero-logo {
-      width: 88px;
-      height: 88px;
-      object-fit: cover;
-      border-radius: 18px;
-    }
+    .hero-logo { width: 88px; height: 88px; object-fit: cover; border-radius: 18px; }
 
     .hero-label {
       display: block;
@@ -68,7 +63,6 @@
       letter-spacing: 0.25em;
       font-size: 0.85rem;
       margin-bottom: 1.2rem;
-      opacity: 0.9;
     }
 
     .hero-title {
@@ -81,7 +75,6 @@
       margin: 0 auto 3.5rem;
       line-height: 1.1;
     }
-
     .hero-title span { color: var(--orange); }
 
     .hero-cta {
@@ -92,12 +85,19 @@
       padding: 1.2rem 3.5rem;
       border-radius: 4px;
       font-size: 1.1rem;
-      transition: all 0.2s ease;
-      box-shadow: 0 10px 20px rgba(232, 85, 42, 0.2);
     }
 
-    /* --- 2. ABOUT SECTION --- */
-    .container { max-width: 850px; margin: 0 auto; padding: 5rem 2rem; }
+    /* --- ABOUT SECTION --- */
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .container { max-width: 850px; margin: 0 auto; padding: 6rem 2rem; }
     
     .about-title {
       font-family: 'Cormorant Garamond', serif;
@@ -106,40 +106,56 @@
       margin-bottom: 1.5rem;
     }
 
-    .about-text {
-      font-size: 1.3rem;
-      margin-bottom: 2rem;
+    /* --- HOW IT WORKS --- */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+    .step-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: #e0d9e8; line-height: 1; }
+    .step h3 { font-family: 'Cormorant Garamond', serif; color: var(--plum); font-size: 1.4rem; margin-bottom: 0.5rem; }
+
+    /* --- QUOTE BANNER --- */
+    .quote-banner {
+      background: var(--orange);
+      color: white;
+      padding: 5rem 2rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-style: italic;
     }
 
-    /* --- 3. SUBMISSION FORM --- */
+    /* --- FORM CARD --- */
     .form-card {
       background: white;
       padding: 4rem 2.5rem;
       border-radius: 4px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-      border-top: 5px solid var(--orange);
-      margin-bottom: 4rem;
+      margin-top: -2rem;
     }
 
     .note-box {
       background: #f1ebfb;
-      padding: 2rem;
+      padding: 2.5rem;
       border-radius: 4px;
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
+      font-size: 0.95rem;
     }
 
-    textarea {
+    label { font-weight: bold; letter-spacing: 0.1em; font-size: 0.8rem; display: block; margin-bottom: 0.5rem; }
+    
+    textarea, select {
       width: 100%;
-      min-height: 300px;
-      padding: 1.5rem;
+      padding: 1.2rem;
       border: 1.5px solid #eee;
       border-radius: 4px;
       font-family: inherit;
-      font-size: 1.1rem;
-      margin-top: 1rem;
+      margin-bottom: 2rem;
       background: #fdfdfd;
-      resize: vertical;
     }
+
+    textarea { min-height: 250px; }
 
     .submit-btn {
       width: 100%;
@@ -149,60 +165,11 @@
       padding: 1.2rem;
       font-size: 1.1rem;
       cursor: pointer;
-      margin-top: 2rem;
       border-radius: 4px;
-      transition: background 0.3s;
     }
 
-    .submit-btn:hover { background: #4e366b; }
-
-    /* --- 4. HOW IT WORKS --- */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 3rem;
-      margin-top: 3rem;
-    }
-
-    .step-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.5rem;
-      color: #e0d9e8;
-      line-height: 1;
-      font-weight: 600;
-    }
-
-    .step h3 {
-      font-family: 'Cormorant Garamond', serif;
-      color: var(--plum);
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-    }
-
-    /* --- 5. FOOTER --- */
-    footer {
-      padding: 5rem 2rem;
-      text-align: center;
-      background: var(--cream);
-      border-top: 1px solid #ede7f5;
-    }
-
-    .footer-logo { 
-      width: 55px; 
-      height: 55px; 
-      border-radius: 12px; 
-      margin-bottom: 1.5rem; 
-      object-fit: cover;
-    }
-
-    .footer-link {
-      color: var(--orange);
-      text-decoration: none;
-      font-weight: bold;
-      letter-spacing: 0.1em;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-    }
+    footer { padding: 5rem 2rem; text-align: center; }
+    .footer-logo { width: 55px; height: 55px; border-radius: 12px; margin-bottom: 1.5rem; }
   </style>
 </head>
 <body>
@@ -210,7 +177,7 @@
   <header class="hero">
     <div>
       <div class="hero-logo-wrap">
-        <img src="X_unsentletters_icon_orange.jpg" alt="Unsent Letters Icon" class="hero-logo">
+        <img src="X_unsentletters_icon_orange.jpg" alt="Icon" class="hero-logo">
       </div>
       <span class="hero-label">Submit Your Letter</span>
       <h1 class="hero-title">what would you say, if you could say anything<span>?</span></h1>
@@ -219,55 +186,77 @@
   </header>
 
   <section class="container">
+    <span class="section-label">ABOUT THE NEWSLETTER</span>
     <h2 class="about-title">unsent letters.</h2>
-    <p class="about-text">
-      Send me a quiet confession. Dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. 
-      I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (& me) — it's not just you. It's us.
-    </p>
+    <p style="font-size: 1.2rem; margin-bottom: 1rem;">Send me a quiet confession. Dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (& me) — it's not just you. It's us.</p>
+    <p style="font-style: italic;">— it’s michelle d.</p>
   </section>
 
-  <section id="submit" class="container">
-    <div class="form-card">
-      <div class="note-box">
-        <h4 style="font-family: 'Cormorant Garamond'; margin-bottom: 0.5rem; font-size: 1.2rem;">a note on the letters ♡</h4>
-        <p style="font-size: 1rem; color: var(--plum);">Confessions ideally center around personal dilemmas. 1-2 paragraphs is perfect. Try to end with a question.</p>
+  <section class="container" style="background: #fff; max-width: 100%;">
+    <div style="max-width: 850px; margin: 0 auto;">
+      <span class="section-label">HOW IT WORKS</span>
+      <h2 class="about-title" style="font-size: 3rem;">three steps. one letter.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>write it down</h3>
+          <p>Whatever it is. The thing you've been circling. The question you're scared to ask out loud. Write it here — no name, no context needed.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>send it anonymously</h3>
+          <p>All submissions are completely anonymous. I read every single one. Nothing is dismissed, nothing is judged. Very brave of you, genuinely.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>keep an eye out</h3>
+          <p>I publish one or two letters a week on the newsletter. Yours might be next. Subscribe so you don't miss it when it lands.</p>
+        </div>
       </div>
-
-      <form action="https://formspree.io/f/xpwrrqep" method="POST">
-        <label style="font-weight: bold; letter-spacing: 0.1em; font-size: 0.8rem;">YOUR LETTER (REQUIRED)</label>
-        <textarea name="message" required placeholder="Write it all down..."></textarea>
-        <button type="submit" class="submit-btn">send the letter →</button>
-      </form>
-      <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-style: italic;">100% anonymous. I read everything.</p>
     </div>
   </section>
 
-  <section class="container">
-    <h2 class="about-title" style="font-size: 3rem;">how it works.</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h3>write it down</h3>
-        <p>The thing you've been circling. The question you're scared to ask out loud. No name, no context needed.</p>
+  <div class="quote-banner">
+    <p>“send me a quiet confession. dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (& me) — it's not just you. It's us.”</p>
+    <p style="font-size: 0.8rem; margin-top: 2rem; letter-spacing: 0.2em;">— UNSENT LETTERS</p>
+  </div>
+
+  <section id="submit" class="container">
+    <span class="section-label" style="text-align: center;">SUBMIT YOUR LETTER</span>
+    <h2 class="about-title" style="text-align: center; font-size: 3rem;">what would you say, if you could say anything<span>?</span></h2>
+    
+    <div class="form-card">
+      <div class="note-box">
+        <h4 style="font-family: 'Cormorant Garamond'; margin-bottom: 1rem; font-size: 1.3rem;">a note on the letters ♡</h4>
+        <p>The nature of the letters/questions ideally centre around personal dilemmas you're keen to have answered/thought through by me & the community. The idea being that through writing and the community, we can all lift each other up, even just a tiny bit. ♡ —</p>
+        <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+          <li>1-2 paragraphs, of roughly 4-6 sentences</li>
+          <li>Try to end with a question where possible</li>
+        </ul>
       </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h3>send anonymously</h3>
-        <p>I read every single one. All submissions are completely anonymous. Nothing is judged.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h3>keep an eye out</h3>
-        <p>I publish one or two letters a week on the newsletter. Yours might be next.</p>
-      </div>
+
+      <form action="https://formspree.io/f/xpwrrqep" method="POST">
+        <label>YOUR LETTER (required)</label>
+        <textarea name="message" required placeholder="testiting"></textarea>
+        
+        <label>THEME (optional — helps me find your letter)</label>
+        <select name="theme">
+          <option value="friendship">friendship</option>
+          <option value="love">love</option>
+          <option value="work">work</option>
+          <option value="life">life</option>
+        </select>
+
+        <button type="submit" class="submit-btn">send the letter →</button>
+      </form>
+      <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">100% anonymous. I read everything. No name, no email required.</p>
     </div>
   </section>
 
   <footer>
-    <img src="X_unsentletters_icon_orange.jpg" alt="Unsent Letters Logo" class="footer-logo">
-    <h3 style="font-family: 'Cormorant Garamond'; font-size: 2rem; color: var(--plum); margin-bottom: 0.5rem;">unsent letters</h3>
-    <p style="margin-bottom: 1.5rem; color: var(--text-muted);">A home for the things left unsaid.</p>
-    <a href="https://michellediazvc.substack.com/" class="footer-link">VISIT THE NEWSLETTER</a>
+    <img src="X_unsentletters_icon_orange.jpg" alt="Logo" class="footer-logo">
+    <p style="color: var(--text-muted); font-size: 0.9rem;">a newsletter by michelle d.</p>
+    <a href="https://michellediazvc.substack.com/" style="color: var(--plum); font-weight: bold; text-decoration: none; display: block; margin-top: 1rem; letter-spacing: 0.1em;">READ THE NEWSLETTER ↗</a>
   </footer>
 
 </body>
