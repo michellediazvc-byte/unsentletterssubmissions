@@ -29,7 +29,7 @@
       line-height: 1.7;
     }
 
-    /* Hero Section */
+    /* --- HERO SECTION (MATCHING SCREENSHOT) --- */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -41,12 +41,11 @@
       position: relative;
     }
 
-    /* The "Perfect" Icon Wrapper */
     .hero-logo-wrap {
       width: 140px;
       height: 140px;
       margin: 0 auto 2.5rem;
-      background: rgba(255,255,255,0.08); /* Subtle glass effect */
+      background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: 32px;
       display: flex;
@@ -60,7 +59,7 @@
       width: 88px;
       height: 88px;
       object-fit: cover;
-      border-radius: 18px; /* Matches the rounded corners of your design */
+      border-radius: 18px;
     }
 
     .hero-label {
@@ -101,10 +100,9 @@
     .hero-cta:hover { 
       transform: translateY(-3px);
       background: #f06a42;
-      box-shadow: 0 15px 30px rgba(232, 85, 42, 0.3);
     }
 
-    /* Content Styling */
+    /* --- CONTENT SECTIONS --- */
     .container { max-width: 850px; margin: 0 auto; padding: 5rem 2rem; }
     
     .about-title {
@@ -139,11 +137,7 @@
       font-size: 1.1rem;
       margin-top: 1rem;
       background: #fdfdfd;
-    }
-
-    textarea:focus {
-      outline: none;
-      border-color: var(--plum);
+      resize: vertical;
     }
 
     .submit-btn {
@@ -156,11 +150,32 @@
       cursor: pointer;
       margin-top: 2rem;
       border-radius: 4px;
-      transition: background 0.2s;
     }
 
-    .submit-btn:hover { background: #4e366b; }
+    /* --- STEPS SECTION --- */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
 
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      color: #eee;
+      line-height: 1;
+      font-weight: 600;
+    }
+
+    .step h3 {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--plum);
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* --- FOOTER --- */
     footer {
       padding: 5rem 2rem;
       text-align: center;
@@ -197,11 +212,32 @@
       </div>
 
       <form action="https://formspree.io/f/xpwrrqep" method="POST">
-        <label style="font-weight: bold; letter-spacing: 0.1em; font-size: 0.8rem;">YOUR LETTER</label>
+        <label style="font-weight: bold; letter-spacing: 0.1em; font-size: 0.8rem;">YOUR LETTER (REQUIRED)</label>
         <textarea name="message" required placeholder="Write it all down..."></textarea>
         <button type="submit" class="submit-btn">send the letter →</button>
       </form>
       <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-style: italic;">100% anonymous. I read everything.</p>
+    </div>
+  </section>
+
+  <section class="container">
+    <h2 class="about-title" style="font-size: 3rem;">how it works.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>write it down</h3>
+        <p>The thing you've been circling. The question you're scared to ask out loud. No name, no context needed.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>send anonymously</h3>
+        <p>I read every single one. All submissions are completely anonymous. Nothing is judged.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>keep an eye out</h3>
+        <p>I publish one or two letters a week on the newsletter. Yours might be next.</p>
+      </div>
     </div>
   </section>
 
