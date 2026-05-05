@@ -32,7 +32,6 @@
       line-height: 1.7;
     }
 
-    /* --- HERO (Restored High-Fidelity Design) --- */
     .hero {
       min-height: 500px;
       display: flex;
@@ -93,7 +92,6 @@
     }
     .hero-cta:hover { background: #f0643d; transform: translateY(-1px); }
 
-    /* --- SECTIONS --- */
     .container { max-width: 900px; margin: 0 auto; padding: 6rem 2rem; }
     .section-label { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 1.5rem; }
     
@@ -109,7 +107,6 @@
     .quote-banner { background: var(--orange); color: white; padding: 6rem 2rem; text-align: center; }
     .quote-banner p { max-width: 900px; margin: 0 auto; font-size: clamp(1.4rem, 3vw, 2.1rem); font-style: italic; line-height: 1.55; font-family: 'Cormorant Garamond', serif; }
 
-    /* --- FORM CARD (Fixed Alignment) --- */
     .submit-section { text-align: center; padding-bottom: 8rem; }
     .submit-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3rem); margin-bottom: 3.5rem; max-width: 20ch; margin-left: auto; margin-right: auto; color: var(--plum); }
     .form-card { background: white; padding: 4rem 2.5rem; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.06); text-align: left; }
@@ -247,14 +244,11 @@ From the outside, my career looks impressive... Inside, I feel like I've been fa
       statusEl.textContent = "Sending your letter...";
 
       const payload = {
-  timestamp: new Date().toLocaleString(),
-  theme: themeValue,
-  letter: letterText // Make sure this is 'letter', not 'message'
-};
+        timestamp: new Date().toLocaleString(),
+        theme: themeValue,
+        letter: letterText
+      };
 
-      // THE TECHNICAL FIX: 
-      // We send the JSON but use 'no-cors' mode. This bypasses the Google Sheet 
-      // security wall that was blocking the data.
       fetch(SCRIPT_URL, {
         method: "POST",
         mode: "no-cors", 
