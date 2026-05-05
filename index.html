@@ -247,10 +247,10 @@ From the outside, my career looks impressive... Inside, I feel like I've been fa
       statusEl.textContent = "Sending your letter...";
 
       const payload = {
-        timestamp: new Date().toLocaleString(),
-        theme: themeValue,
-        letter: letterText
-      };
+  timestamp: new Date().toLocaleString(),
+  theme: themeValue,
+  letter: letterText // Make sure this is 'letter', not 'message'
+};
 
       // THE TECHNICAL FIX: 
       // We send the JSON but use 'no-cors' mode. This bypasses the Google Sheet 
