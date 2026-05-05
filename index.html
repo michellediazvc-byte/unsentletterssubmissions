@@ -409,7 +409,7 @@
     <p class="about-copy">
       Send me a quiet confession. Dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (&amp; me) — it's not just you. It's us.
     </p>
-    <p class="about-signoff">— it’s michelle d.</p>
+    <p class="about-signoff">— it's michelle d.</p>
   </section>
 
   <section class="steps-wrap">
@@ -438,7 +438,7 @@
   </section>
 
   <div class="quote-banner">
-    <p>“send me a quiet confession. dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (&amp; me) — it's not just you. It's us.”</p>
+    <p>"send me a quiet confession. dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (&amp; me) — it's not just you. It's us."</p>
     <p>— UNSENT LETTERS</p>
   </div>
 
@@ -467,7 +467,7 @@
             required
             placeholder="Samples of Qs:
 -
-From the outside, my career looks impressive: promotions, LinkedIn announcements, people asking me for advice. Inside, I feel like I’ve been faking for so long that I’ve started to forget what I’m actually good at. Every compliment feels like a near-miss, like they’re praising a person I’ve been performing, and I’m constantly waiting for someone to notice. Is there something wrong with me? I know if other people were blessed to be in my position, they’d be happy.
+From the outside, my career looks impressive: promotions, LinkedIn announcements, people asking me for advice. Inside, I feel like I've been faking for so long that I've started to forget what I'm actually good at. Every compliment feels like a near-miss, like they're praising a person I've been performing, and I'm constantly waiting for someone to notice. Is there something wrong with me? I know if other people were blessed to be in my position, they'd be happy.
 Yours, Faking Happiness"></textarea>
         </div>
 
@@ -525,29 +525,18 @@ Yours, Faking Happiness"></textarea>
       statusEl.textContent = "Sending your letter...";
 
       try {
-        const response = await fetch(SCRIPT_URL, {
+        await fetch(SCRIPT_URL, {
           method: "POST",
+          mode: "no-cors",
           headers: {
             "Content-Type": "text/plain;charset=utf-8"
           },
           body: JSON.stringify(payload)
         });
 
-        const responseText = await response.text();
-        let data = null;
+        form.reset();
+        statusEl.textContent = "Letter sent successfully.";
 
-        try {
-          data = JSON.parse(responseText);
-        } catch (err) {
-          data = null;
-        }
-
-        if (response.ok && data && data.status === "success") {
-          form.reset();
-          statusEl.textContent = "Letter sent successfully.";
-        } else {
-          statusEl.textContent = "Something went wrong. Please try again.";
-        }
       } catch (error) {
         statusEl.textContent = "Something went wrong. Please try again.";
       } finally {
