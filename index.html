@@ -225,7 +225,7 @@ From the outside, my career looks impressive... Inside, I feel like I've been fa
   </footer>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8K0VQoYvGEgPfbA38Iybl7n6g5yDLSLbCwD0o9QpJMe9ku3_VbPw_8m_dXPyBHAtGBg/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwRu4wkaqATcwVrcv_vF3NzpG7-WdAk76eT0W8CAAPlyUclZuOM1Ztf9tluCPNjyIoKsg/exec";
 
     const form = document.getElementById("letterForm");
     const statusEl = document.getElementById("formStatus");
@@ -244,10 +244,10 @@ From the outside, my career looks impressive... Inside, I feel like I've been fa
       statusEl.textContent = "Sending your letter...";
 
       const payload = {
-        timestamp: new Date().toLocaleString(),
-        theme: themeValue,
-        letter: letterText
-      };
+  theme: themeValue,
+  letter: letterText,
+  timestamp: new Date().toLocaleString()
+};
 
       fetch(SCRIPT_URL, {
         method: "POST",
