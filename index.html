@@ -32,12 +32,14 @@
       line-height: 1.7;
     }
 
+    /* --- HERO --- */
     .hero {
-      min-height: 500px;
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 4rem 2rem;
+      padding: 4rem 1rem;
       background: 
         radial-gradient(circle at top, rgba(115, 80, 155, 0.5), transparent 45%),
         linear-gradient(180deg, #5b3e7e 0%, #2d1d47 100%);
@@ -50,22 +52,16 @@
       content: "";
       position: absolute;
       inset: 0;
-      background-image: repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.06) 0,
-        rgba(255,255,255,0.06) 1px,
-        transparent 1px,
-        transparent 68px
-      );
+      background-image: repeating-linear-gradient(to bottom, rgba(255,255,255,0.06) 0, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 68px);
       pointer-events: none;
     }
 
-    .hero-inner { position: relative; z-index: 2; }
+    .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 900px; }
 
     .hero-logo-wrap {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 2.5rem;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1.5rem;
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: 32px;
@@ -73,57 +69,93 @@
       align-items: center;
       justify-content: center;
       backdrop-filter: blur(10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     }
 
-    .hero-logo { width: 88px; height: 88px; object-fit: cover; border-radius: 18px; }
-    .hero-label { display: block; color: white; text-transform: uppercase; letter-spacing: 0.25em; font-size: 0.85rem; margin-bottom: 2rem; }
+    .hero-logo { width: 70px; height: 70px; object-fit: cover; border-radius: 18px; }
 
-    .hero-cta {
+    .hero-title {
+      color: white;
+      font-family: 'Cormorant Garamond';
+      margin-bottom: 2rem;
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      font-style: italic;
+    }
+
+    /* --- SAMPLE CARDS (New Styles) --- */
+    .samples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+      text-align: left;
+    }
+
+    .sample-card {
+      background: rgba(250, 246, 240, 0.95);
+      padding: 1.5rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid rgba(255,255,255,0.3);
+      position: relative;
+    }
+
+    .sample-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .sample-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .sample-preview {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--plum);
+      margin-bottom: 1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .sample-btn {
       display: inline-block;
       background: var(--orange);
       color: white;
       text-decoration: none;
-      padding: 1.15rem 3.5rem;
+      padding: 0.5rem 1rem;
       border-radius: 4px;
-      font-size: 1.05rem;
-      transition: all 0.2s ease;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: background 0.2s;
     }
-    .hero-cta:hover { background: #f0643d; transform: translateY(-1px); }
 
+    .sample-btn:hover { background: var(--plum); }
+
+    /* --- REST OF THE SITE --- */
     .container { max-width: 900px; margin: 0 auto; padding: 6rem 2rem; }
     .section-label { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 1.5rem; }
-    
     .about-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6vw, 4.8rem); color: var(--plum); margin-bottom: 1.3rem; line-height: 1.05; }
-    .about-copy { font-size: 1.2rem; margin-bottom: 1rem; }
-    .about-signoff { font-style: italic; color: var(--text-muted); }
-
-    .steps-wrap { background: var(--white); width: 100%; }
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 3.5rem; margin-top: 3rem; }
-    .step-num { font-family: 'Cormorant Garamond', serif; font-size: 3.7rem; color: #ddd3e8; line-height: 1; margin-bottom: 0.5rem; }
-    .step h3 { font-family: 'Cormorant Garamond', serif; color: var(--plum); font-size: 1.5rem; margin-bottom: 0.5rem; }
-
-    .quote-banner { background: var(--orange); color: white; padding: 6rem 2rem; text-align: center; }
-    .quote-banner p { max-width: 900px; margin: 0 auto; font-size: clamp(1.4rem, 3vw, 2.1rem); font-style: italic; line-height: 1.55; font-family: 'Cormorant Garamond', serif; }
-
+    
     .submit-section { text-align: center; padding-bottom: 8rem; }
-    .submit-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3rem); margin-bottom: 3.5rem; max-width: 20ch; margin-left: auto; margin-right: auto; color: var(--plum); }
     .form-card { background: white; padding: 4rem 2.5rem; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.06); text-align: left; }
-    .note-box { background: var(--soft-lilac); padding: 2rem; border-radius: 4px; margin-bottom: 3rem; font-size: 0.95rem; }
-    .note-box h4 { font-family: 'Cormorant Garamond', serif; margin-bottom: 1rem; font-size: 1.5rem; color: var(--plum); }
-    .note-box ul { margin-top: 1rem; margin-left: 1.5rem; }
-
+    
     label { font-weight: bold; letter-spacing: 0.1em; font-size: 0.8rem; display: block; margin-bottom: 0.9rem; color: var(--plum); text-align: center; }
     textarea, select { width: 100%; padding: 1.2rem; border: 1.5px solid var(--border); border-radius: 4px; font-family: inherit; background: #fffdfd; font-size: 1rem; margin-bottom: 2.5rem; }
     textarea { min-height: 300px; resize: vertical; }
-    textarea::placeholder { white-space: pre-wrap; color: #aaa; opacity: 1; font-size: 0.95rem; }
 
-    .submit-btn { width: 100%; background: var(--plum); color: white; border: none; padding: 1.2rem; font-size: 1.05rem; cursor: pointer; border-radius: 4px; transition: background 0.2s; }
+    .submit-btn { width: 100%; background: var(--plum); color: white; border: none; padding: 1.2rem; font-size: 1.05rem; cursor: pointer; border-radius: 4px; }
     .submit-btn:hover { background: var(--plum-dark); }
-    .submit-btn:disabled { opacity: 0.7; cursor: wait; }
-
-    .form-status { text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.95rem; font-style: italic; min-height: 1.5em; }
 
     footer { padding: 5rem 2rem; text-align: center; background: var(--cream); border-top: 1px solid #eee; }
     .footer-logo { width: 55px; height: 55px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; }
@@ -135,110 +167,79 @@
   <header class="hero">
     <div class="hero-inner">
       <div class="hero-logo-wrap">
-        <img src="X_unsentletters_icon_orange.jpg" alt="Unsent Letters icon" class="hero-logo">
+        <img src="X_unsentletters_icon_orange.jpg" alt="Logo" class="hero-logo">
       </div>
-      <span class="hero-label">Submit Your Letter</span>
-      <h1 class="hero-title" style="color: white; font-family: 'Cormorant Garamond'; margin-bottom: 3rem; font-size: clamp(2.5rem, 8vw, 4.2rem); font-style: italic;">what would you say, if you could say anything<span style="color:var(--orange)">?</span></h1>
-      <a href="#submit" class="hero-cta">send the letter →</a>
+      <h1 class="hero-title">what would you say, if you could say anything<span style="color:var(--orange)">?</span></h1>
+      
+      <div class="samples-grid">
+        <div class="sample-card" onclick="https://itsmichelled.substack.com/p/on-trust-and-other-things-we-mistake('Confession No. 12', 'Love', 'I still check his Instagram every single morning...')">
+          <div class="sample-meta"><span>Confession No. 12</span><span>Jan 17</span></div>
+          <div class="sample-preview">"I still check his Instagram every single morning, like muscle memory..."</div>
+          <div class="sample-meta" style="margin-top: -5px;">'Love'</div>
+          <a href="https://itsmichelled.substack.com/" target="_blank" class="sample-btn" onclick="event.stopPropagation()">Read on Newsletter →</a>
+        </div>
+
+        <div class="sample-card" onclick="https://itsmichelled.substack.com/p/was-this-right-or-was-this-mine('Letter ID: 08/23', 'Career', 'From the outside, my career looks impressive. Inside, I feel like I am faking...')">
+          <div class="sample-meta"><span>Letter ID: 08/23</span><span>May 23</span></div>
+          <div class="sample-preview">"From the outside, my career looks impressive. Inside, I feel like I'm faking..."</div>
+          <div class="sample-meta" style="margin-top: -5px;">'Career'</div>
+          <a href="https://itsmichelled.substack.com/" target="_blank" class="sample-btn" onclick="event.stopPropagation()">Read on Newsletter →</a>
+        </div>
+      </div>
+
+      <a href="#submit" class="hero-cta" style="margin-top: 3rem;">ready to let it go? →</a>
     </div>
   </header>
 
   <section class="container">
-    <span class="section-label">ABOUT THE NEWSLETTER</span>
     <h2 class="about-title">unsent letters.</h2>
-    <p class="about-copy">Send me a quiet confession. Dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (&amp; me) — it's not just you. It's us.</p>
+    <p class="about-copy">Send me a quiet confession. Dilemmas that keep you awake, unspoken feelings, the truths that live only in your head.</p>
     <p class="about-signoff">— it's michelle d.</p>
   </section>
 
-  <section class="steps-wrap">
-    <div class="container">
-      <span class="section-label">HOW IT WORKS</span>
-      <h2 class="about-title" style="font-size: 3rem;">three steps. one letter.</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <h3>write it down</h3>
-          <p>Whatever it is. The thing you've been circling. The question you're scared to ask out loud. Write it here — no name, no context needed.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <h3>send it anonymously</h3>
-          <p>All submissions are completely anonymous. I read every single one. Nothing is dismissed, nothing is judged. Very brave of you, genuinely.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <h3>keep an eye out</h3>
-          <p>I publish one or two letters a week on the newsletter. Yours might be next. Subscribe so you don't miss it when it lands.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="quote-banner">
-    <p>"send me a quiet confession. dilemmas that keep you awake, unspoken feelings, the truths that live only in your head. I don't advise severely; I'm not qualified for that. But I can read, reflect, and remind you (&amp; me) — it's not just you. It's us."</p>
-  </div>
-
   <section id="submit" class="container submit-section">
-    <span class="section-label">SUBMIT YOUR LETTER</span>
-    <h2 class="submit-title">what would you say, if you could say anything<span>?</span></h2>
-
     <div class="form-card">
-      <div class="note-box">
-        <h4>a note on the letters ♡</h4>
-        <p>The nature of the letters/questions ideally centre around personal dilemmas. ♡ —</p>
-        <ul>
-          <li>1-2 paragraphs, of roughly 4-6 sentences</li>
-          <li>Try to end with a question where possible</li>
-        </ul>
-      </div>
-
       <form id="letterForm">
         <label for="message">YOUR LETTER (required)</label>
-        <textarea id="message" name="message" required placeholder="Samples of Qs:
--
-I still check his Instagram every single morning, like muscle memory, even though we haven’t spoken in like 3 yrs. I know what city he lives in, his close friends, even his current job. (he rants about it a loooot) He probably has no idea who I am anymore. I hate how much space he still takes up in my head, and I don’t know how to let go of a story that ended a long time ago. Do you have an idea?
-
-Love, Can’t Let Go"></textarea>
+        <textarea id="message" name="message" required placeholder="Write it here... or click a sample above to start."></textarea>
 
         <label for="theme">THEME (optional)</label>
         <select id="theme" name="theme">
           <option value="other">Select a theme</option>
           <option value="love & relationships">love & relationships</option>
           <option value="friendship">friendship</option>
-          <option value="family">family</option>
-          <option value="work & ambition">work & ambition</option>
-          <option value="identity & belonging">identity & belonging</option>
-          <option value="grief & loss">grief & loss</option>
-          <option value="creativity & purpose">creativity & purpose</option>
-          <option value="fear & trust">fear & trust</option>
-          <option value="something else">something else</option>
+          <option value="career">career</option>
+          <option value="other">something else</option>
         </select>
 
         <button type="submit" class="submit-btn" id="submitBtn">send the letter →</button>
       </form>
-      <p id="formStatus" class="form-status">100% anonymous. I read everything. No name, no email required.</p>
+      <p id="formStatus" class="form-status">100% anonymous. I read everything.</p>
     </div>
   </section>
 
   <footer>
     <img src="X_unsentletters_icon_orange.jpg" alt="Logo" class="footer-logo">
-    <p style="color: var(--text-muted); font-size: 0.9rem;">a newsletter by michelle d.</p>
     <a href="https://itsmichelled.substack.com/" class="footer-link" target="_blank">READ THE NEWSLETTER ↗</a>
   </footer>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwRu4wkaqATcwVrcv_vF3NzpG7-WdAk76eT0W8CAAPlyUclZuOM1Ztf9tluCPNjyIoKsg/exec";
+    // FILL FORM FUNCTION
+    function fillForm(id, theme, text) {
+      document.getElementById('message').value = text;
+      // Scroll smoothly to form
+      document.getElementById('submit').scrollIntoView({ behavior: 'smooth' });
+    }
 
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwRu4wkaqATcwVrcv_vF3NzpG7-WdAk76eT0W8CAAPlyUclZuOM1Ztf9tluCPNjyIoKsg/exec";
     const form = document.getElementById("letterForm");
     const statusEl = document.getElementById("formStatus");
     const submitBtn = document.getElementById("submitBtn");
 
     form.addEventListener("submit", function(e) {
       e.preventDefault();
-
       const letterText = document.getElementById("message").value.trim();
       const themeValue = document.getElementById("theme").value;
-
       if (!letterText) return;
 
       submitBtn.disabled = true;
@@ -246,10 +247,10 @@ Love, Can’t Let Go"></textarea>
       statusEl.textContent = "Sending your letter...";
 
       const payload = {
-  theme: themeValue,
-  letter: letterText,
-  timestamp: new Date().toLocaleString()
-};
+        theme: themeValue,
+        letter: letterText,
+        timestamp: new Date().toLocaleString()
+      };
 
       fetch(SCRIPT_URL, {
         method: "POST",
