@@ -128,6 +128,72 @@
     footer { padding: 5rem 2rem; text-align: center; background: var(--cream); border-top: 1px solid #eee; }
     .footer-logo { width: 55px; height: 55px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; }
     .footer-link { color: var(--plum); font-weight: bold; text-decoration: none; display: block; margin-top: 1rem; letter-spacing: 0.1em; }
+
+    /* ── Success Modal ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(45, 29, 71, 0.55);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .modal-overlay.open {
+      display: flex;
+      animation: fadeIn 0.25s ease;
+    }
+    .modal-card {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 3.5rem 3rem;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+      animation: slideUp 0.3s ease;
+    }
+    .modal-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      color: var(--plum);
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+    .modal-body {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .modal-close {
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 0.9rem 2.8rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: 'Lora', serif;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: #f0643d; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(24px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -196,9 +262,9 @@
         <label for="message">YOUR LETTER (required)</label>
         <textarea id="message" name="message" required placeholder="Samples of Qs:
 -
-I still check his Instagram every single morning, like muscle memory, even though we haven’t spoken in like 3 yrs. I know what city he lives in, his close friends, even his current job. (he rants about it a loooot) He probably has no idea who I am anymore. I hate how much space he still takes up in my head, and I don’t know how to let go of a story that ended a long time ago. Do you have an idea?
+I still check his Instagram every single morning, like muscle memory, even though we haven't spoken in like 3 yrs. I know what city he lives in, his close friends, even his current job. (he rants about it a loooot) He probably has no idea who I am anymore. I hate how much space he still takes up in my head, and I don't know how to let go of a story that ended a long time ago. Do you have an idea?
 
-Love, Can’t Let Go"></textarea>
+Love, Can't Let Go"></textarea>
 
         <label for="theme">THEME (optional)</label>
         <select id="theme" name="theme">
@@ -226,12 +292,46 @@ Love, Can’t Let Go"></textarea>
     <a href="https://itsmichelled.substack.com/" class="footer-link" target="_blank">READ THE NEWSLETTER ↗</a>
   </footer>
 
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <span class="modal-icon">✉️</span>
+      <h2 class="modal-title" id="modalTitle">your letter has been sent.</h2>
+      <p class="modal-body">
+        Thank you for trusting me with this. I read every single one — yours included.<br><br>
+        Keep an eye on the newsletter. It might just be next.
+      </p>
+      <button class="modal-close" id="modalCloseBtn">close ♡</button>
+    </div>
+  </div>
+
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwRu4wkaqATcwVrcv_vF3NzpG7-WdAk76eT0W8CAAPlyUclZuOM1Ztf9tluCPNjyIoKsg/exec";
 
     const form = document.getElementById("letterForm");
     const statusEl = document.getElementById("formStatus");
     const submitBtn = document.getElementById("submitBtn");
+    const modal = document.getElementById("successModal");
+    const modalCloseBtn = document.getElementById("modalCloseBtn");
+
+    function openModal() {
+      modal.classList.add("open");
+      modalCloseBtn.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove("open");
+    }
+
+    modalCloseBtn.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", function(e) {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") closeModal();
+    });
 
     form.addEventListener("submit", function(e) {
       e.preventDefault();
@@ -259,7 +359,8 @@ Love, Can’t Let Go"></textarea>
       })
       .then(() => {
         form.reset();
-        statusEl.textContent = "Letter sent successfully! Thank you.";
+        statusEl.textContent = "";
+        openModal();
       })
       .catch(err => {
         statusEl.textContent = "Something went wrong. Please try again.";
